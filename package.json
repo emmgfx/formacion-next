@@ -18,8 +18,8 @@
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
-    "eslint": "8.14.0",
-    "eslint-config-next": "12.1.6",
+    "eslint": "^8.8.0",
+    "eslint-config-next": "^12.1.0",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24"
   }
