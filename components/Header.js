@@ -1,8 +1,6 @@
 import Link from "next/link";
 
 const Header = ({ credits }) => {
-  console.log({ credits });
-
   const logout = () => {};
   return (
     <header className="flex justify-between py-8 px-4 bg-primary-700 text-white font-bold">
