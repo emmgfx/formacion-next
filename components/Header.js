@@ -1,19 +1,21 @@
 import Link from "next/link";
 
-const Header = ({ credits }) => {
-  const logout = () => {};
+import { useAuth } from "../contexts/auth";
+
+const Header = () => {
+  const { isAuthenticated, credits, logout } = useAuth();
   return (
     <header className="flex justify-between py-8 px-4 bg-primary-700 text-white font-bold">
       <h1>
         <Link href="/">VCE</Link>
       </h1>
       <nav>
-        {credits && (
+        {isAuthenticated && (
           <p>
-            Tienes {credits} créditos. <button>Logout</button>
+            Tienes {credits} créditos. <button onClick={logout}>Logout</button>
           </p>
         )}
-        {!credits && (
+        {!isAuthenticated && (
           <ul>
             <li>
               <Link href="/login">Login</Link>
