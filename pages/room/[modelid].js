@@ -23,11 +23,6 @@ const Room = ({ roomData }) => {
     });
   }, [isAuthenticated]);
 
-  //   curl --location --request GET 'https://stagingapiv2.olecams.com//favorites' \
-  // --header 'userCountry: ES' \
-  // --header 'userRegion: BCN' \
-  // --header 'Authorization: Bearer '
-
   return (
     <>
       <Head>
