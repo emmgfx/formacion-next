@@ -1,34 +1,30 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
-import cookieCutter from "cookie-cutter";
+import Head from "next/head";
 
 import Button from "../components/Button";
 import Header from "../components/Header";
 import InputFloatingLabel from "../components/InputFloatingLabel";
-import Head from "next/head";
+
+import { useAuth } from "../contexts/auth";
 
 export default function Login() {
   const [email, setEmail] = useState(process.env.NEXT_PUBLIC_OC_AUTH_USER);
-  const [password, setPassword] = useState(process.env.NEXT_PUBLIC_OC_AUTH_PASSWORD);
+  const [password, setPassword] = useState(
+    process.env.NEXT_PUBLIC_OC_AUTH_PASSWORD
+  );
   const router = useRouter();
+  const auth = useAuth();
+
+  useEffect(() => {
+    if (auth.isAutenticated) {
+      router.push("/");
+    }
+  }, [auth.isAutenticated]);
 
   const login = (e) => {
     e.preventDefault();
-    axios
-      .post(`${process.env.NEXT_PUBLIC_OC_APIURL}/login`, {
-        user: email,
-        pwd: password,
-        recaptcha: "12345",
-      })
-      .then((response) => {
-        cookieCutter.set("token", response.data.message.token);
-        cookieCutter.set("credits", response.data.message.credits);
-        router.push("/");
-      })
-      .catch((error) => {
-        alert(error.response.data.error.message);
-      });
+    auth.login({ email, password, recaptcha: "12345" });
   };
 
   return (
