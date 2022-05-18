@@ -1,6 +1,9 @@
 import Head from "next/head";
 import Header from "../components/Header";
+import Layout from "../components/Layout";
+import PreHeader from "../components/PreHeader";
 import RoomItem from "../components/RoomItem";
+import Title from "../components/Title";
 
 export default function Home({ rooms, ...props }) {
   return (
@@ -8,15 +11,25 @@ export default function Home({ rooms, ...props }) {
       <Head>
         <title>Home</title>
       </Head>
-      <Header />
-      <div className="p-4 grid gap-4 grid-cols-5">
-        {rooms.map((room) => {
-          return <RoomItem key={room.id} room={room} />;
-        })}
-      </div>
+      <PreHeader />
+      <Layout>
+        <Header />
+        <Title>
+          <div className="flex gap-2">
+            <span>Chicas</span>
+            <span className="hidden lg:block">
+              ▸ ENCUENTRA EL MEJOR CHAT ERÓTICO Y WEBCAM DE SEXO EN VIVO
+            </span>
+          </div>
+        </Title>
+        <div className="grid p-[3px] gap-[3px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {rooms.map((room) => {
+            return <RoomItem key={room.id} room={room} />;
+          })}
+        </div>
+      </Layout>
     </>
   );
-  // return <pre className="container">{JSON.stringify(rooms, null, 2)}</pre>;
 }
 
 // export async function getServerSideProps({ req, res }) {
@@ -34,7 +47,7 @@ export default function Home({ rooms, ...props }) {
 
 export async function getStaticProps(context) {
   const request = await fetch(
-    `${process.env.NEXT_PUBLIC_OC_APIURL}/rooms/oc/?limit=10`
+    `${process.env.NEXT_PUBLIC_OC_APIURL}/rooms/oc/?limit=20`
   );
   const { message } = await request.json();
   const { results: rooms } = message;

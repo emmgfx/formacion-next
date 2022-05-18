@@ -10,6 +10,11 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
       background-color: #141524;
   color: white;
+  min-height: 100vh;
+}
+
+body{
+  background: linear-gradient(to bottom, #0b243d 0%, #01304a 100%);
 }
 
 a {
