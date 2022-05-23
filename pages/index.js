@@ -53,6 +53,6 @@ export async function getStaticProps(context) {
   const { results: rooms } = message;
   return {
     props: { rooms },
-    revalidate: 10,
+    revalidate: 60 * 5,
   };
 }
