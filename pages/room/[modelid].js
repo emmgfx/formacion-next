@@ -54,13 +54,39 @@ const Room = ({ roomData }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+// export async function getServerSideProps({ params }) {
+//   try {
+//     const response = await api.get(`/performer/${params.modelid}`);
+//     return {
+//       props: { roomData: response.data.message },
+//     };
+//   } catch (error) {
+//     if (error.response.status === 404) {
+//       return {
+//         notFound: true,
+//       };
+//     }
+//   }
+// }
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { modelid: "21680" } }],
+    // paths: [],
+    fallback: false, // false or 'blocking'
+  };
+}
+
+export async function getStaticProps({ params }) {
+  console.log(params);
   try {
     const response = await api.get(`/performer/${params.modelid}`);
+    console.log(response);
     return {
       props: { roomData: response.data.message },
     };
   } catch (error) {
+    console.log(error);
     if (error.response.status === 404) {
       return {
         notFound: true,
