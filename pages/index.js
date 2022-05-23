@@ -47,7 +47,7 @@ export default function Home({ rooms, ...props }) {
 
 export async function getStaticProps(context) {
   const request = await fetch(
-    `${process.env.NEXT_PUBLIC_OC_APIURL}/rooms/oc/?limit=20`
+    `${process.env.NEXT_PUBLIC_OC_APIURL}/rooms/oc/?limit=20&pruebas=1`
   );
   const { message } = await request.json();
   const { results: rooms } = message;
