@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import api from "../../shared/api";
 import { useAuth } from "../../contexts/auth";
@@ -10,6 +11,7 @@ import Button from "../../components/Button";
 import FavoriteButton from "../../components/FavoriteButton";
 
 const Room = ({ roomData }) => {
+  const router = useRouter();
   const [isFavorite, setIsFavorite] = useState(false);
   const { isAuthenticated } = useAuth();
 
@@ -22,6 +24,10 @@ const Room = ({ roomData }) => {
       setIsFavorite(isFavorited);
     });
   }, [isAuthenticated]);
+
+  if (router.isFallback) {
+    return <div>Loading</div>;
+  }
 
   return (
     <>
@@ -71,27 +77,25 @@ const Room = ({ roomData }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { modelid: "21680" } }],
-    // paths: [],
-    fallback: false, // false or 'blocking'
+    // paths: [{ params: { modelid: "21680" } }],
+    paths: [],
+    fallback: true, // false or 'blocking'
   };
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params);
   try {
     const response = await api.get(`/performer/${params.modelid}`);
-    console.log(response);
     return {
       props: { roomData: response.data.message },
     };
   } catch (error) {
-    console.log(error);
-    if (error.response.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
+    // console.log(error);
+    // if (error.response.status === 404) {
+    return {
+      notFound: true,
+    };
+    // }
   }
 }
 
