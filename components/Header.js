@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { useWhiteLabel } from "../contexts/whiteLabel";
 
 // import { useAuth } from "../contexts/auth";
 
 const Header = () => {
+  const { whiteLabel } = useSelector((state) => state.whiteLabel);
   return (
     <header className="flex justify-between items-center pr-4">
       <Link href="/">
-        <img src="https://www.videochaterotico.com/tpl/bootstrap/img/videochaterotico.png" />
+        <img src={whiteLabel.config.images.logo} />
       </Link>
       <button className="text-[#083042] p-2 rounded border-[#017cb6] bg-gradient-to-b from-[#9adfff] to-[#42c3ff]">
         <IconMenu size="28" />
