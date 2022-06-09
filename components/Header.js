@@ -1,13 +1,20 @@
 import Link from "next/link";
 
-// import { useAuth } from "../contexts/auth";
+import { useWhiteLabel } from "../contexts/whiteLabel";
 
 const Header = () => {
+  const { whiteLabel } = useWhiteLabel();
   return (
     <header className="flex justify-between items-center pr-4">
-      <Link href="/">
-        <img src="https://www.videochaterotico.com/tpl/bootstrap/img/videochaterotico.png" />
-      </Link>
+      {whiteLabel && (
+        <Link href="/">
+          <img
+            src={whiteLabel.images.logo}
+            width={whiteLabel.images.logo_width}
+            height={whiteLabel.images.logo_height}
+          />
+        </Link>
+      )}
       <button className="text-[#083042] p-2 rounded border-[#017cb6] bg-gradient-to-b from-[#9adfff] to-[#42c3ff]">
         <IconMenu size="28" />
       </button>

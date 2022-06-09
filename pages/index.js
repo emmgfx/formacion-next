@@ -1,4 +1,7 @@
 import Head from "next/head";
+
+import { useWhiteLabel } from "../contexts/whiteLabel";
+
 import Header from "../components/Header";
 import Layout from "../components/Layout";
 import PreHeader from "../components/PreHeader";
@@ -6,6 +9,10 @@ import RoomItem from "../components/RoomItem";
 import Title from "../components/Title";
 
 export default function Home({ rooms, ...props }) {
+  const whiteLabel = useWhiteLabel();
+
+  console.log({ whiteLabel });
+
   return (
     <>
       <Head>
