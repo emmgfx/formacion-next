@@ -8,7 +8,7 @@ const Preloader = () => {
 
   // console.log({ loading, loadingDebounced });
 
-  if (!loadingDebounced) return null;
+  if (!loading) return null;
 
   return (
     <div className="fixed bg-white text-black w-full h-full z-50 flex justify-center items-center">
