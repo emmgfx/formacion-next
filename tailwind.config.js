@@ -6,13 +6,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          100: "#FFC5BB",
-          300: "#FF8772",
-          500: "#FF4C10",
-          700: "#ED4811",
-          950: "#B7380C",
-        },
+        primary: "var(--color-primary)",
+        "primary-light": "var(--color-primary-light)",
+        "primary-dark": "var(--color-primary-dark)",
+        "primary-darkest": "var(--color-primary-darkest)",
         secondary: {
           100: "#F3C1FF",
           300: "#D74FFA",
